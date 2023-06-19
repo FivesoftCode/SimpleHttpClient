@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<VBox spacing="10" alignment="TOP_LEFT" xmlns:fx="http://javafx.com/fxml" fx:controller="com.fivesoft.simplehttpclient.MainController">
+
+    <!-- Header View -->
+    <HBox spacing="10">
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+        </padding>
+        <ComboBox fx:id="httpMethodComboBox" prefWidth="150" />
+        <TextField fx:id="urlTextField" HBox.hgrow="ALWAYS" />
+        <Button text="Request" fx:id="requestButton" />
+    </HBox>
+
+    <!-- Tab View -->
+    <TabPane fx:id="tabPane">
+        <tabs>
+            <Tab text="Response" fx:id="responseTab" />
+            <Tab text="Body" fx:id="bodyTab" />
+            <Tab text="Headers" fx:id="headersTab" />
+        </tabs>
+    </TabPane>
+
+    <!-- Content Area for Tabs -->
+    <StackPane fx:id="tabContentArea">
+        <TextArea text="No response yet" wrapText="true" editable="false" visible="true" styleClass="response-text-area" />
+        <TextArea wrapText="true" visible="false" styleClass="body-text-area" />
+        <TableView visible="false" prefHeight="100">
+            <columns>
+                <TableColumn text="Headers" fx:id="headerColumn" />
+            </columns>
+        </TableView>
+    </StackPane>
+
+</VBox>
+
+
+
+
+
+
+
