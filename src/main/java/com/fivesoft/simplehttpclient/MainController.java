@@ -1,5 +1,6 @@
 package com.fivesoft.simplehttpclient;
 
+import com.fivesoft.simplehttpclient.tabmanager.TabManager;
 import com.fivesoft.simplehttpclient.ui.Header;
 import com.fivesoft.simplehttpclient.ui.HeaderTableView;
 import javafx.application.Platform;

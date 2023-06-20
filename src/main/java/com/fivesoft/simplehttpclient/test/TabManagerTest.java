@@ -1,20 +1,13 @@
 package com.fivesoft.simplehttpclient.test;
 
-import com.fivesoft.simplehttpclient.TabManager;
+import com.fivesoft.simplehttpclient.tabmanager.TabManager;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.concurrent.CountDownLatch;
 
 import static org.junit.Assert.*;
 

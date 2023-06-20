@@ -16,5 +16,7 @@ module com.fivesoft.simplehttpclient {
 
     opens com.fivesoft.simplehttpclient.test to junit;
     exports com.fivesoft.simplehttpclient.test;
+    exports com.fivesoft.simplehttpclient.tabmanager;
+    opens com.fivesoft.simplehttpclient.tabmanager to javafx.fxml;
 
 }

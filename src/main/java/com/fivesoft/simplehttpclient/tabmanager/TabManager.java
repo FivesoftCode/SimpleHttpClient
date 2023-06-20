@@ -1,4 +1,4 @@
-package com.fivesoft.simplehttpclient;
+package com.fivesoft.simplehttpclient.tabmanager;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
