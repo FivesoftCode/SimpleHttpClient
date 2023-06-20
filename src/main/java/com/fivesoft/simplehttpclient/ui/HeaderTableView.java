@@ -17,11 +17,11 @@ public class HeaderTableView extends TableView<Header> {
         // Set up the header table
         keyColumn = new TableColumn<>("Key");
         keyColumn.setCellValueFactory(data -> data.getValue().keyProperty());
-        keyColumn.setCellFactory(column -> createEditableTextFieldCell());
+        keyColumn.setCellFactory(this::createEditableTextFieldCell);
 
         valueColumn = new TableColumn<>("Value");
         valueColumn.setCellValueFactory(data -> data.getValue().valueProperty());
-        valueColumn.setCellFactory(column -> createEditableTextFieldCell());
+        valueColumn.setCellFactory(this::createEditableTextFieldCell);
 
         getColumns().addAll(keyColumn, valueColumn);
 
@@ -29,19 +29,13 @@ public class HeaderTableView extends TableView<Header> {
         setEditable(true);
 
         // Add an empty header row
-        getItems().add(new Header("", ""));
+        for (int i = 0; i < 50; i++) {
+            addEmptyHeader();
+        }
     }
 
-    private TextFieldTableCell<Header, String> createEditableTextFieldCell() {
-        return new TextFieldTableCell<Header, String>(new DefaultStringConverter()) {
-            @Override
-            public void startEdit() {
-                super.startEdit();
-                if (getItem() != null) {
-                    setText(getItem());
-                }
-            }
-        };
+    private EditingCell createEditableTextFieldCell(TableColumn<Header, String> column) {
+        return new EditingCell();
     }
 
     private void enableEditing() {

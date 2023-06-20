@@ -13,7 +13,7 @@ repositories {
 }
 
 ext {
-    junitVersion = '5.8.2'
+    junitVersion = '5.9.2'
 }
 
 sourceCompatibility = '11'
@@ -34,14 +34,20 @@ javafx {
 }
 
 dependencies {
-    implementation('org.controlsfx:controlsfx:11.1.1')
-    implementation('com.dlsc.formsfx:formsfx-core:11.5.0') {
+
+    /**
+     * External packages
+     */
+
+    implementation('org.controlsfx:controlsfx:11.1.2')
+    implementation 'org.openjfx:javafx-controls:19.0.2.1'
+    implementation('com.dlsc.formsfx:formsfx-core:11.6.0') {
         exclude(group: 'org.openjfx')
     }
+    implementation 'junit:junit:4.13.1'
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testImplementation 'junit:junit:4.13.2'
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-    implementation 'org.apache.commons:commons-lang3:3.0'
 }
 
 test {

@@ -116,4 +116,15 @@ public class TabManager {
         return tabPane.getSelectionModel().getSelectedItem();
     }
 
+    /**
+     * Checks if a tab with the specified ID exists.
+     * @param id The ID to check.
+     * @return True if a tab with the specified ID exists, false otherwise.
+     */
+    public boolean hasTab(String id) {
+        return tabPane.getTabs()
+                .stream()
+                .anyMatch(tab -> tab.getId().equals(id));
+    }
+
 }

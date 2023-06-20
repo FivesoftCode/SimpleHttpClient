@@ -6,7 +6,15 @@ module com.fivesoft.simplehttpclient {
     requires com.dlsc.formsfx;
 
     requires java.net.http;
+    requires junit;
 
     opens com.fivesoft.simplehttpclient to javafx.fxml;
     exports com.fivesoft.simplehttpclient;
+
+    opens com.fivesoft.simplehttpclient.ui to javafx.fxml;
+    exports com.fivesoft.simplehttpclient.ui;
+
+    opens com.fivesoft.simplehttpclient.test to junit;
+    exports com.fivesoft.simplehttpclient.test;
+
 }

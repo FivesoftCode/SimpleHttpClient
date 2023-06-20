@@ -15,6 +15,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class MainController {
 
@@ -51,6 +53,10 @@ public class MainController {
     private final TextArea bodyTextArea;
     private final HeaderTableView headersTableView;
 
+    /**
+     * Creates a new MainController instance. Initialize pages UI elements.
+     */
+
     public MainController() {
 
         responseTextArea = new TextArea("No response yet");
@@ -67,7 +73,18 @@ public class MainController {
         headersTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
+    /**
+     * Initializes all UI elements.
+     */
+
     public void initialize() {
+
+        //Tabs
+        TabManager tabManager = new TabManager(tabPane, tabContentArea);
+
+        tabManager.addTab("response", "Response", responseTextArea, false)
+                //.addTab("body", "Body", bodyTextArea, false) // By default, the body tab is not shown (default HTTP method is GET)
+                .addTab("headers", "Headers", headersTableView, false);
 
         tabContentArea.setFillHeight(true);
         tabContentArea.setPrefWidth(Double.MAX_VALUE);
@@ -89,28 +106,22 @@ public class MainController {
             }
         });
 
+        httpMethodComboBox.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    if(Objects.equals(newValue, "GET")) {
+                        tabManager.removeTab("body");
+                    } else {
+                        if (!tabManager.hasTab("body")) {
+                            tabManager.addTab("body", "Body", bodyTextArea, false);
+                        }
+                    }
+        });
+
         httpMethodComboBox.setConverter(DEFAULT_STRING_CONVERTER);
         httpMethodComboBox.setValue("GET");
 
-        //Tabs
-        TabManager tabManager = new TabManager(tabPane, tabContentArea);
-
-        tabManager.addTab("response", "Response", responseTextArea, false)
-                .addTab("body", "Body", bodyTextArea, false)
-                .addTab("headers", "Headers", headersTableView, false);
-
         //Request Button
         requestButton.setOnAction(e -> makeRequest());
-    }
-
-    @FXML
-    private void onHttpMethodChanged() {
-        // Get the selected HTTP method from the ComboBox
-        String selectedMethod = httpMethodComboBox.getValue();
-        System.out.println("Selected HTTP method: " + selectedMethod);
-
-        // Perform any additional logic based on the selected method
-        // For example, you can update UI elements or trigger actions accordingly
     }
 
     private void makeRequest() {
@@ -142,7 +153,7 @@ public class MainController {
             // Get the headers from the table
             ObservableList<Header> headers = headersTableView.getItems();
             for (Header header : headers) {
-                String key = header.getKey();
+                String key = header.getKey().trim();
                 String value = header.getValue();
                 if (!key.isEmpty() && !value.isEmpty()) {
                     requestBuilder.setHeader(key, value);
@@ -159,11 +170,19 @@ public class MainController {
                 );
 
                 int code = response.statusCode();
-                String message = response.version().name();
+                String httpVer = response.version().name();
                 String responseBody = response.body();
 
+                String headersString = response.headers().map().entrySet().stream()
+                        .map(entry -> entry.getKey() + ": " + entry.getValue())
+                        .collect(Collectors.joining("\n"));
 
-                Platform.runLater(() -> responseTextArea.setText(message + " " + code + "\n\n" + responseBody));
+                Platform.runLater(() -> responseTextArea.setText(
+                        "Status: " + code + " (" + httpVer + ")" +
+                        "\n\n***Headers***\n\n" +
+                        headersString +
+                        "\n\n***Body***\n\n" +
+                        responseBody));
 
             } catch (Exception e) {
                 Platform.runLater(() -> responseTextArea.setText("Error. " + e.getMessage()));
