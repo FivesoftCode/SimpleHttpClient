@@ -16,7 +16,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
-<VBox spacing="10" alignment="TOP_LEFT" xmlns:fx="http://javafx.com/fxml" fx:controller="com.fivesoft.simplehttpclient.MainController">
+<VBox spacing="10" alignment="TOP_LEFT" xmlns:fx="http://javafx.com/fxml" fx:controller="com.fivesoft.simplehttpclient.MainController" fx:id="mainContent">
 
     <!-- Header View -->
     <HBox spacing="10">
@@ -28,25 +28,13 @@
         <Button text="Request" fx:id="requestButton" />
     </HBox>
 
+    <HBox spacing="10" viewOrder="54665">
     <!-- Tab View -->
-    <TabPane fx:id="tabPane">
-        <tabs>
-            <Tab text="Response" fx:id="responseTab" />
-            <Tab text="Body" fx:id="bodyTab" />
-            <Tab text="Headers" fx:id="headersTab" />
-        </tabs>
-    </TabPane>
+        <TabPane HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" fx:id="tabPane"/>
+    </HBox>
 
     <!-- Content Area for Tabs -->
-    <StackPane fx:id="tabContentArea">
-        <TextArea text="No response yet" wrapText="true" editable="false" visible="true" styleClass="response-text-area" />
-        <TextArea wrapText="true" visible="false" styleClass="body-text-area" />
-        <TableView visible="false" prefHeight="100">
-            <columns>
-                <TableColumn text="Headers" fx:id="headerColumn" />
-            </columns>
-        </TableView>
-    </StackPane>
+    <HBox fx:id="tabContentArea" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
 
 </VBox>
 
