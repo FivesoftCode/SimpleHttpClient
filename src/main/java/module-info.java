@@ -4,7 +4,7 @@ module com.fivesoft.simplehttpclient {
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
-    requires okhttp3;
+
     requires java.net.http;
 
     opens com.fivesoft.simplehttpclient to javafx.fxml;

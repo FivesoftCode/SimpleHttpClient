@@ -7,17 +7,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.util.StringConverter;
-import okhttp3.*;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -164,9 +158,12 @@ public class MainController {
                         HttpResponse.BodyHandlers.ofString()
                 );
 
+                int code = response.statusCode();
+                String message = response.version().name();
                 String responseBody = response.body();
 
-                Platform.runLater(() -> responseTextArea.setText(responseBody));
+
+                Platform.runLater(() -> responseTextArea.setText(message + " " + code + "\n\n" + responseBody));
 
             } catch (Exception e) {
                 Platform.runLater(() -> responseTextArea.setText("Error. " + e.getMessage()));
