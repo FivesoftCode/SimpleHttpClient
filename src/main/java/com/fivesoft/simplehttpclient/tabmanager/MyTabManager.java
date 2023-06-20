@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 
-public class TabManager {
+public class MyTabManager {
 
     private final Pane tabContentArea;
     private final TabPane tabPane;
@@ -21,7 +21,7 @@ public class TabManager {
      * @param tabContentArea The tab content area, where the content of the selected tab is displayed.
      */
 
-    public TabManager(TabPane tabPane, Pane tabContentArea) {
+    public MyTabManager(TabPane tabPane, Pane tabContentArea) {
         this.tabContentArea = tabContentArea;
         this.tabPane = tabPane;
         this.tabPane.getSelectionModel()
@@ -50,7 +50,7 @@ public class TabManager {
      * @return The TabManager instance for method chaining.
      */
 
-    public TabManager addTab(String id, String title, Node content, boolean closeable) {
+    public MyTabManager addTab(String id, String title, Node content, boolean closeable) {
         Tab tab = new Tab(title, content);
         tab.setId(id);
         tab.setClosable(closeable);

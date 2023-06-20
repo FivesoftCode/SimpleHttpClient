@@ -1,6 +1,6 @@
 package com.fivesoft.simplehttpclient;
 
-import com.fivesoft.simplehttpclient.tabmanager.TabManager;
+import com.fivesoft.simplehttpclient.tabmanager.MyTabManager;
 import com.fivesoft.simplehttpclient.ui.Header;
 import com.fivesoft.simplehttpclient.ui.HeaderTableView;
 import javafx.application.Platform;
@@ -81,7 +81,7 @@ public class MainController {
     public void initialize() {
 
         //Tabs
-        TabManager tabManager = new TabManager(tabPane, tabContentArea);
+        MyTabManager tabManager = new MyTabManager(tabPane, tabContentArea);
 
         tabManager.addTab("response", "Response", responseTextArea, false)
                 //.addTab("body", "Body", bodyTextArea, false) // By default, the body tab is not shown (default HTTP method is GET)

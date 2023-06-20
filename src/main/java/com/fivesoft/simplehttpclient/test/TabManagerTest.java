@@ -1,6 +1,6 @@
 package com.fivesoft.simplehttpclient.test;
 
-import com.fivesoft.simplehttpclient.tabmanager.TabManager;
+import com.fivesoft.simplehttpclient.tabmanager.MyTabManager;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.TabPane;
@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class TabManagerTest {
 
-    private TabManager tabManager;
+    private MyTabManager tabManager;
     private Pane tabContentArea;
     private TabPane tabPane;
 
@@ -29,7 +29,7 @@ public class TabManagerTest {
         // Create the necessary components
         tabContentArea = new Pane();
         tabPane = new TabPane();
-        tabManager = new TabManager(tabPane, tabContentArea);
+        tabManager = new MyTabManager(tabPane, tabContentArea);
     }
 
     @Test
